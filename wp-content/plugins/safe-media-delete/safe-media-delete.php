@@ -50,6 +50,7 @@ add_action('cmb2_admin_init', 'custom_term_image_metabox');
 
 // Chech if attachment is attached in editor
 function is_attachment_used_in_classic_editor($attachment_id) {
+
     global $wpdb;
 
     $query = $wpdb->prepare("
@@ -268,4 +269,76 @@ add_filter('manage_media_columns', 'add_attached_objects_column');
 }
 
 add_action('manage_media_custom_column', 'populate_attached_objects_column', 10, 2); 
+
+
+// Enqueue custom script for the media modal
+function my_plugin_add_attached_objects_field_to_media_modal($form_fields, $attachment)
+{
+    $attached_objects = get_attached_objects($attachment->ID);
+    $attached_terms = get_attached_terms($attachment->ID);
+    
+    if (!empty($attached_objects)) {
+        $html = '<div class="attachment-display-settings">';
+        $html .= '<label for="attached-objects">' . __('Attached Objects') . '</label><br/>';
+        $html .= '<span class="attached-object-ids">';
+
+        $post_links = array();
+        $term_links = array();
+
+        foreach ($attached_objects as $attached_object) {
+            $object_id = $attached_object['id'];
+            $object_type = $attached_object['type'];
+            $object_edit_link = '';
+
+            if ($object_type === 'post') {
+                $object_edit_link = get_edit_post_link($object_id);
+                $post_links[] = '<a href="' . esc_url($object_edit_link) . '">' . $object_id . '</a>';
+            } 
+        }
+
+        if (!empty($post_links)) {
+            $html .= '<strong>Posts/Pages: </strong>' . implode(', ', $post_links) . '<br>';
+        }
+
+        if ($object_type === 'term') {
+            if (!empty($attached_terms) && !is_wp_error($attached_terms)) {
+                $term_links = array();
+    
+                foreach ($attached_terms as $term) {
+                    $term_edit_links = array();
+                    
+                    $term_edit_links['Category'] = get_edit_term_link($term, 'category');
+                    $term_edit_links['Tag'] = get_edit_term_link($term, 'post_tag');
+                    
+                    foreach ($term_edit_links as $taxonomy => $term_edit_link) {
+                        if ($term_edit_link) {
+                            $term_links[] = '<a href="' . esc_url($term_edit_link) . '">' . $taxonomy . ': ' . $term . '</a>';
+                        }
+                    }
+                }
+    
+               
+            }
+        }
+    
+
+        if (!empty($term_links)) {
+            $html .= '<strong>Terms: </strong>' . implode(', ', $term_links);
+        }
+
+        $html .= '</span>';
+        $html .= '</div>';
+
+        $form_fields['attached_objects'] = array(
+            'label' => '',
+            'input' => 'html',
+            'html'  => $html,
+        );
+    }
+
+    return $form_fields;
+}
+
+
+add_filter('attachment_fields_to_edit', 'my_plugin_add_attached_objects_field_to_media_modal', 10, 2);
 
