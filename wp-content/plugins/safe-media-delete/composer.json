@@ -1,0 +1,34 @@
+{
+    "name": "ali-imran/safe-media-delete",
+    "description": "Safe Media Delete",
+    "version": "1.0.0",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "Ali Imran",
+            "email": "aalim.ali.imran@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=8.0.11",
+        "composer/installers": "^1.10"
+    },
+    "autoload": {
+        "classmap": [
+            "tests/"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9.5"
+    },
+    
+    "scripts": {
+        "test": "phpunit"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}
