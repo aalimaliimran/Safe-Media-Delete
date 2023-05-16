@@ -8,6 +8,9 @@
  * Author URI: https://github.com/aalimaliimran/Safe-Media-Delete
  * License: GPL2
  */
+
+
+
 // Add CMB2 library
 require_once plugin_dir_path(__FILE__) . '../cmb2/init.php';
 

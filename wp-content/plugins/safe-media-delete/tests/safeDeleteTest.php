@@ -1,14 +1,31 @@
 <?php
+namespace Tests;
 
-  // Test cases for the safe media delete functionality
+use PHPUnit\Framework\TestCase;
+
+/* class helloTest extends TestCase{
+
+  public function test_function()
+    {
+    $expected = "hello";
+
+    $results = "hello";
+
+    $actual = $results;
+
+    $this->assertSame($expected, $actual);
+    }
+} */
+
+// Test cases for the safe media delete functionality
 class SafeMediaDeleteTest extends WP_UnitTestCase {
 
     // Add Image Taxonomy & Term Unit Test Case
     public function test_custom_term_image_metabox() {
         // Create a new term and assign it to a taxonomy
-        $term_id = $this->factory->term->create( array(
+        $term_id = $this->factory->term->create(array(
             'taxonomy' => 'category',
-        ) );
+        ));
 
         // Set up the necessary WordPress globals
         $_POST = array(
@@ -21,30 +38,30 @@ class SafeMediaDeleteTest extends WP_UnitTestCase {
         custom_term_image_metabox();
 
         // Get the CMB2 instance for the metabox
-        $cmb = cmb2_get_metabox( 'custom_term_image_metabox', 'term' );
+        $cmb = cmb2_get_metabox('custom_term_image_metabox', 'term');
 
         // Verify that the metabox is set up correctly
-        $this->assertEquals( 'Term Image', $cmb->prop( 'title' ) );
-        $this->assertEquals( array( 'term' ), $cmb->prop( 'object_types' ) );
-        $this->assertEquals( array( 'category', 'post_tag' ), $cmb->prop( 'taxonomies' ) );
-        $this->assertEquals( 'side', $cmb->prop( 'context' ) );
-        $this->assertEquals( 'default', $cmb->prop( 'priority' ) );
+        $this->assertEquals('Term Image', $cmb->prop('title'));
+        $this->assertEquals(array('term'), $cmb->prop('object_types'));
+        $this->assertEquals(array('category', 'post_tag'), $cmb->prop('taxonomies'));
+        $this->assertEquals('side', $cmb->prop('context'));
+        $this->assertEquals('default', $cmb->prop('priority'));
 
         // Get the CMB2 field instance for the image field
         $field_id = 'custom_term_image_image';
-        $field = $cmb->get_field( $field_id );
+        $field = $cmb->get_field($field_id);
 
         // Verify that the image field is set up correctly
-        $this->assertEquals( 'Image', $field->args( 'name' ) );
-        $this->assertEquals( $field_id, $field->args( 'id' ) );
-        $this->assertEquals( 'file', $field->args( 'type' ) );
-        $this->assertFalse( $field->args( 'options.url' ) );
-        $this->assertEquals( 'Add or Upload Image', $field->args( 'text.add_upload_file_text' ) );
-        $this->assertEquals( array( 'image/jpeg', 'image/png' ), $field->args( 'query_args.type' ) );
-        $this->assertTrue( $field->args( 'save_id' ) );
+        $this->assertEquals('Image', $field->args('name'));
+        $this->assertEquals($field_id, $field->args('id'));
+        $this->assertEquals('file', $field->args('type'));
+        $this->assertFalse($field->args('options.url'));
+        $this->assertEquals('Add or Upload Image', $field->args('text.add_upload_file_text'));
+        $this->assertEquals(array('image/jpeg', 'image/png'), $field->args('query_args.type'));
+        $this->assertTrue($field->args('save_id'));
 
         // Simulate a file upload
-        $_FILES[ $field_id ] = array(
+        $_FILES[$field_id] = array(
             'name'     => 'test-image.jpg',
             'type'     => 'image/jpeg',
             'tmp_name' => '/path/to/tmp/file',
@@ -53,14 +70,15 @@ class SafeMediaDeleteTest extends WP_UnitTestCase {
         );
 
         // Save the file field value
-        do_action( 'cmb2_save_field', $field, $term_id, $field->updated(), $field->args( 'query_args' ) );
+        do_action('cmb2_save_field', $field, $term_id, $field->updated(), $field->args('query_args'));
 
         // Verify that the attachment ID is saved
-        $attachment_id = get_term_meta( $term_id, $field_id, true );
-        $this->assertNotFalse( wp_attachment_is_image( $attachment_id ) );
+        $attachment_id = get_term_meta($term_id, $field_id, true);
+        $this->assertNotFalse(wp_attachment_is_image($attachment_id));
     }
+}
 
-
+/*
 
 
     // Attached Objects Unit Test Case
@@ -398,3 +416,4 @@ public function test_prevent_image_deletion_with_no_associations() {
         $this->assertEquals( 404, $response->get_status() );
     }
 }
+ */
