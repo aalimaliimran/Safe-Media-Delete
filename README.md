@@ -1,5 +1,7 @@
 # Safe-Media-Delete
-Wordpress Plugin
+
+Wordpress Plugin Installation
+=============================
 
 Download the Plugin: Obtain the plugin files for "Safe Media Delete" and "CMB2" to your computer. You can find these files on the https://github.com/aalimaliimran/Safe-Media-Delete repository. path: wp-content/plugins/
 
