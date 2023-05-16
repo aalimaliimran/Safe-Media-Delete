@@ -26,6 +26,7 @@ Activate the Plugin (Safe Media Delete): In the WordPress admin panel, go to the
 API:
 =====
 For media detail API test link: /wp-json/assignment/v1/media/{id}
+
 For media delete API test link: /wp-json/assignment/v1/media/{id}/delete
 
 Test Cases:
@@ -48,6 +49,8 @@ By ensuring that these dependencies are properly installed, you can run the unit
 
 Developer
 =========
+
 Ali Imran
+
 aalim.ali.imran@gmail.com
 
