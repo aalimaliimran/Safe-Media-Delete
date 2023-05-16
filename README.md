@@ -13,4 +13,17 @@ Activate the Dependency (CMB2): Log in to your WordPress admin panel. Navigate t
 
 Activate the Plugin (Safe Media Delete): In the WordPress admin panel, go to the "Plugins" section. Look for the "Safe Media Delete" plugin in the list. Click on the "Activate" link below the plugin to activate it.
 
-Note: There are few known bugs/issues on that I am working on :)
+Plugin Directory Structure:
+
+safe-media-delete
+ |-- includes
+   |--- add-image-taxonomy-terms.php
+   |--- api.php
+   |--- attached-object.php
+   |--- prevent-image-deletion
+ |-- tests
+   |--- bootstrap.php
+   |--- safeDeleteTest.php
+ |-- composer.json
+ |-- phpunit.xml
+ |-- safe-media-delete.php
