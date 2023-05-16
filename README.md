@@ -7,7 +7,7 @@ Download the Plugin: Obtain the plugin files for "Safe Media Delete" and "CMB2" 
 
 Wordpress Installation: Install wordpress latest version on your computer localhost or server.
 
-Upload the Plugin Files: Within the root directory of wordpress, locate the wp-content/plugins folder. Extract the "Safe Media Delete" plugin files you downloaded in the previous step. Upload the entire plugin folders (e.g., safe-media-delete) to the wp-content/plugins directory.
+Upload the Plugin Files: Within the root directory of wordpress, locate the wp-content/plugins folder. Extract the "Safe Media Delete" plugin files you downloaded in the previous step. Upload the entire plugin folders (e.g., safe-media-delete) to the wp-content/plugins directory. you can exclude tests/ and composer.json file as its only required for test cases.
 
 Install the Dependency (CMB2): Similarly, extract the CMB2 plugin files from its ZIP archive. Upload the entire plugin folder (e.g., cmb2) to the wp-content/plugins directory as well.
 
