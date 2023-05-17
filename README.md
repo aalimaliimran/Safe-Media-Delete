@@ -29,7 +29,7 @@ Safe Media Delete is a WordPress plugin that enhances the WP Admin interface by 
 
 ## Installation
 
-1. Download the `safe-media-delete.zip` file.
+1. Download the `safe-media-delete.zip` file. file path: https://github.com/aalimaliimran/Safe-Media-Delete/tree/main/wp-content/plugins/
 2. In your WordPress admin panel, navigate to **Plugins → Add New**.
 3. Click the **Upload Plugin** button at the top of the page.
 4. Choose the `safe-media-delete.zip` file and click **Install Now**.
