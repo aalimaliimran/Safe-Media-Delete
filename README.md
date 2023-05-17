@@ -20,7 +20,7 @@ Safe Media Delete is a WordPress plugin that enhances the WP Admin interface by 
    - Users can determine whether the ID corresponds to a post or a term, aiding in the identification of image usage.
 
 4. REST API Functionality
-   - Provides REST API endpoints under the `/assignment/v1/` namespace.
+   - Provides REST API endpoints under the `wp-json/assignment/v1/media/{id}` namespace.
    - **Endpoint 1**: Returns details of a given image ID.
      - Response is a JSON object containing information such as ID, Date, Slug, Type (JPEG or PNG), Link, Alt text, and Attached Objects.
      - Attached Objects field contains Post or Term IDs to which the given image is attached, structured accordingly.
@@ -29,7 +29,7 @@ Safe Media Delete is a WordPress plugin that enhances the WP Admin interface by 
 
 ## Installation
 
-1. Download the `safe-media-delete.zip` file from the latest release.
+1. Download the `safe-media-delete.zip` file.
 2. In your WordPress admin panel, navigate to **Plugins → Add New**.
 3. Click the **Upload Plugin** button at the top of the page.
 4. Choose the `safe-media-delete.zip` file and click **Install Now**.
