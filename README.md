@@ -34,6 +34,21 @@ Safe Media Delete is a WordPress plugin that enhances the WP Admin interface by 
 3. Click the **Upload Plugin** button at the top of the page.
 4. Choose the `safe-media-delete.zip` file and click **Install Now**.
 5. After installation, activate the plugin.
+6. Download the plugin dependency CMB2 intall it and activate. 
+
+## Manual Installation
+
+Download the Plugin: Obtain the plugin files for "Safe Media Delete" and "CMB2" to your computer. You can find these files on the https://github.com/aalimaliimran/Safe-Media-Delete repository. path: wp-content/plugins/
+
+Wordpress Installation: Install wordpress latest version on your computer localhost or server.
+
+Upload the Plugin Files: Within the root directory of wordpress, locate the wp-content/plugins folder. Extract the "Safe Media Delete" plugin files you downloaded in the previous step. Upload the entire plugin folders (e.g., safe-media-delete) to the wp-content/plugins directory.
+
+Install the Dependency (CMB2): Similarly, extract the CMB2 plugin files from its ZIP archive. Upload the entire plugin folder (e.g., cmb2) to the wp-content/plugins directory as well.
+
+Activate the Dependency (CMB2): Log in to your WordPress admin panel. Navigate to the "Plugins" section and locate the CMB2 plugin. Click on the "Activate" link below the CMB2 plugin to activate it.
+
+Activate the Plugin (Safe Media Delete): In the WordPress admin panel, go to the "Plugins" section. Look for the "Safe Media Delete" plugin in the list. Click on the "Activate" link below the plugin to activate it.
 
 ## Usage
 
@@ -86,6 +101,16 @@ The plugin provides the following REST API endpoints under the `/assignment/v1/`
    - Method: GET
    - Deletes a given image if it is not attached to any posts or terms.
    - If the image is attached to any posts or terms, the response will indicate that deletion has failed.
+
+## Screenshots
+
+![2023-05-17_11-19-02](https://github.com/aalimaliimran/Safe-Media-Delete/assets/108981157/8e49de4f-16ae-4167-a83d-c84bb67bf6b8)
+![2023-05-17_11-21-46](https://github.com/aalimaliimran/Safe-Media-Delete/assets/108981157/fa38d9d6-1991-4848-9497-c5edc919c3a7)
+![2023-05-17_11-22-43](https://github.com/aalimaliimran/Safe-Media-Delete/assets/108981157/2a9bf7fe-42b0-403c-a873-46a5a5006098)
+![2023-05-17_11-23-37](https://github.com/aalimaliimran/Safe-Media-Delete/assets/108981157/e1993625-e339-4e05-889b-9d1d7646c1c5)
+![2023-05-17_11-24-46](https://github.com/aalimaliimran/Safe-Media-Delete/assets/108981157/e84a7400-9e5d-47c2-a4bb-156f5a47407d)
+![2023-05-17_11-25-20](https://github.com/aalimaliimran/Safe-Media-Delete/assets/108981157/62c4b8cd-62cf-40cb-81b7-16ce846ebbc9)
+
 
 ## Contribution
 
