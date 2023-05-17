@@ -1,8 +1,10 @@
 <?php
 
+require_once dirname(__FILE__) . "/../vendor/autoload.php";
 require_once 'D:/xampp/htdocs/Safe-Media-Delete/wp-load.php';
 
 //require dirname(__FILE__) . '/../vendor/autoload.php';
+// define( 'ABSPATH', dirname( __FILE__ ) . '/wordpress/' );
 define('WP_TESTS_PHPUNIT_POLYFILLS_PATH', dirname(__FILE__) . '/../vendor/yoast/phpunit-polyfills/src/');
 define('WP_RUN_CORE_TESTS', 1);
 

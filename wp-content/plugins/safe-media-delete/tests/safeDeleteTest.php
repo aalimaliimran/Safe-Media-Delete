@@ -3,22 +3,50 @@ namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 
-/* class helloTest extends TestCase{
-
-  public function test_function()
+class AttachmentTest extends TestCase
+{
+    public function testIsAttachmentUsedInClassicEditor()
     {
-    $expected = "hello";
+     // Mock the global $wpdb object
+     global $wpdb;
+     $wpdbMock = $this->getMockBuilder('wpdb')
+         ->disableOriginalConstructor()
+         ->getMock();
 
-    $results = "hello";
+     // Set up the expected SQL query
+     $attachmentId = 123;
+     $expectedQuery = "SELECT ID FROM {\$wpdb->posts} WHERE post_content LIKE '%wp-image-\$attachmentId%' AND post_type IN ('post', 'page') AND post_status IN ('publish', 'draft', 'future', 'pending', 'private')";
 
-    $actual = $results;
+     // Set up the expected result
+     $expectedPosts = [1, 2, 3];
 
-    $this->assertSame($expected, $actual);
+     // Mock the $wpdb->prepare() method to return the expected query
+     $wpdbMock->expects($this->once())
+         ->method('prepare')
+         ->with($expectedQuery)
+         ->willReturn($expectedQuery);
+
+     // Mock the $wpdb->get_col() method to return the expected result
+     $wpdbMock->expects($this->once())
+         ->method('get_col')
+         ->with($expectedQuery)
+         ->willReturn($expectedPosts);
+
+     // Replace the global $wpdb object with the mock
+     $GLOBALS['wpdb'] = $wpdbMock;
+
+        // Call the function being tested
+        $result = is_attachment_used_in_classic_editor($attachmentId);
+
+        // Assert the result
+        $this->assertEquals($expectedPosts, $result);
     }
-} */
+
+}
+
 
 // Test cases for the safe media delete functionality
-class SafeMediaDeleteTest extends WP_UnitTestCase {
+ class SafeMediaDeleteTest extends WP_UnitTestCase {
 
     // Add Image Taxonomy & Term Unit Test Case
     public function test_custom_term_image_metabox() {
@@ -76,9 +104,8 @@ class SafeMediaDeleteTest extends WP_UnitTestCase {
         $attachment_id = get_term_meta($term_id, $field_id, true);
         $this->assertNotFalse(wp_attachment_is_image($attachment_id));
     }
-}
 
-/*
+
 
 
     // Attached Objects Unit Test Case
@@ -416,4 +443,4 @@ public function test_prevent_image_deletion_with_no_associations() {
         $this->assertEquals( 404, $response->get_status() );
     }
 }
- */
+ 
