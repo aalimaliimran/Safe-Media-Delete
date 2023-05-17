@@ -102,6 +102,17 @@ The plugin provides the following REST API endpoints under the `/assignment/v1/`
    - Deletes a given image if it is not attached to any posts or terms.
    - If the image is attached to any posts or terms, the response will indicate that deletion has failed.
 
+## Test Cases
+
+I have previously worked on writing core PHP unit test cases for various projects. However, this is my first opportunity to write unit tests for a WordPress plugin. Unfortunately, I am encountering conflicts between the PHPUnit library and the WordPress unit test framework, which has hindered my ability to successfully execute the unit test cases.
+
+The unit test cases are located in the `test/` folder, but they have not been tested yet. The issue arises because the WordPress functions require the WordPress testing framework to be present in order to properly test the unit test cases.
+
+I hope this explanation clarifies the issue at hand.
+
+– Test cases are in the source code: https://github.com/aalimaliimran/Safe-Media-Delete/wp-content/plugins/safe-media-delete/tests/ folder please find the git repository link below.
+
+
 ## Screenshots
 
 ![2023-05-17_11-19-02](https://github.com/aalimaliimran/Safe-Media-Delete/assets/108981157/8e49de4f-16ae-4167-a83d-c84bb67bf6b8)
