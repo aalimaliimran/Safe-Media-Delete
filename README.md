@@ -1,56 +1,96 @@
-# Safe-Media-Delete
+# Safe Media Delete
 
-Assignment Description
-======================
-https://drive.google.com/file/d/1J_nAoemkEAJYvlms-mnRmBUg5D5Egr4L/view?usp=sharing
+Safe Media Delete is a WordPress plugin that enhances the WP Admin interface by providing additional features related to image management and deletion within the WordPress Media Library. This plugin helps prevent accidental deletion of images that are being used in various contexts across the website, such as featured images, post content, and term pages.
 
-Plugin Zip Download
-=================
+## Features
 
+1. Image Upload and Selection in Term Pages
+   - Adds a field on the Term Add and Term Edit pages to allow users to upload or select an existing PNG or JPEG image from the WordPress Media Library.
+   - Provides an image preview functionality on the same screen using third-party libraries like CMB2.
 
-Wordpress Plugin Installation
-=============================
+2. Image Deletion Restrictions
+   - Prevents the deletion of an image if it is set as a Featured Image in an article.
+   - Prevents the deletion of an image if it is being used in the content of a post (Post Body).
+   - Prevents the deletion of an image if it is being used in a Term Edit page (as implemented in point 1).
+   - Displays a message to the user when attempting to delete an image that is being used elsewhere, asking them to remove the image from the associated posts or terms.
+   - The interface displays the IDs of the affected post(s) or term(s) along with edit links for easy access.
 
-Download the Plugin: Obtain the plugin files for "Safe Media Delete" and "CMB2" to your computer. You can find these files on the https://github.com/aalimaliimran/Safe-Media-Delete repository. path: wp-content/plugins/
+3. Media Library Enhancements
+   - Adds an "Attached Objects" column to the Media Library table, displaying a comma-separated list of IDs linked to the corresponding edit page.
+   - Users can determine whether the ID corresponds to a post or a term, aiding in the identification of image usage.
 
-Wordpress Installation: Install wordpress latest version on your computer localhost or server.
+4. REST API Functionality
+   - Provides REST API endpoints under the `/assignment/v1/` namespace.
+   - **Endpoint 1**: Returns details of a given image ID.
+     - Response is a JSON object containing information such as ID, Date, Slug, Type (JPEG or PNG), Link, Alt text, and Attached Objects.
+     - Attached Objects field contains Post or Term IDs to which the given image is attached, structured accordingly.
+   - **Endpoint 2**: Deletes a given image if it is not attached to any posts or terms.
+     - If the image is attached to any posts or terms, the response indicates that deletion has failed.
 
-Upload the Plugin Files: Within the root directory of wordpress, locate the wp-content/plugins folder. Extract the "Safe Media Delete" plugin files you downloaded in the previous step. Upload the entire plugin folders (e.g., safe-media-delete) to the wp-content/plugins directory. you can exclude tests/ and composer.json file as its only required for test cases.
+## Installation
 
-Install the Dependency (CMB2): Similarly, extract the CMB2 plugin files from its ZIP archive. Upload the entire plugin folder (e.g., cmb2) to the wp-content/plugins directory as well.
+1. Download the `safe-media-delete.zip` file from the latest release.
+2. In your WordPress admin panel, navigate to **Plugins → Add New**.
+3. Click the **Upload Plugin** button at the top of the page.
+4. Choose the `safe-media-delete.zip` file and click **Install Now**.
+5. After installation, activate the plugin.
 
-Activate the Dependency (CMB2): Log in to your WordPress admin panel. Navigate to the "Plugins" section and locate the CMB2 plugin. Click on the "Activate" link below the CMB2 plugin to activate it.
+## Usage
 
-Activate the Plugin (Safe Media Delete): In the WordPress admin panel, go to the "Plugins" section. Look for the "Safe Media Delete" plugin in the list. Click on the "Activate" link below the plugin to activate it.
+Once the plugin is activated, the additional features will be available in the WP Admin interface as described in the Features section.
 
-API:
-=====
-For media detail API test link: /wp-json/assignment/v1/media/{id}
+### Term Pages
 
-For media delete API test link: /wp-json/assignment/v1/media/{id}/delete
+1. When adding or editing a term, a new field will appear allowing you to upload or select an existing PNG or JPEG image from the Media Library.
+2. The selected image will be displayed as a preview on the same screen.
 
-Test Cases:
-===========
+### Image Deletion
 
-Unit test cases for the "Safe Media Delete" plugin are located in the `tests/` folder. To ensure the proper execution of these test cases, it is necessary to install the required dependencies. 
-To install the dependencies for running the unit test cases, you can use the following command:
+1. When attempting to delete an image from the Media Library, the plugin will check if the image is being used as a Featured Image, in post content, or in term pages.
+2. If the image is being used, a message will be displayed indicating the associated post(s) or term(s) where the image is being used.
+3. The message will include edit links for easy access to the affected post(s) or term(s).
+4. To delete the image, remove it from the associated posts or terms before retrying the deletion.
 
-```
-composer update
-```
+### Media Library Table
 
-This command will fetch and install the necessary libraries, including PHPUnit 9.5 or a higher version and the WordPress test framework.
+1. The Media Library table will now include a new column named "Attached Objects" that displays a comma-separated list of IDs linked to the corresponding
 
-Having PHPUnit 9.5 or a newer version is crucial for running the unit test cases effectively. PHPUnit is a widely used testing framework for PHP applications. It provides a range of features and assertions to facilitate comprehensive and automated testing.
+ edit page.
+2. You can determine whether the ID corresponds to a post or a term, helping identify image usage.
 
-The WordPress test framework is another important dependency for running the unit test cases. It provides specialized tools and utilities specifically designed for testing WordPress plugins and themes. By utilizing the WordPress test framework, you can easily create and execute tests that cover various aspects of the "Safe Media Delete" plugin's functionality.
+## REST API
 
-By ensuring that these dependencies are properly installed, you can run the unit test cases for the "Safe Media Delete" plugin and verify the reliability and correctness of its features and functionalities.
+The plugin provides the following REST API endpoints under the `/assignment/v1/` namespace:
 
-Developer
-=========
+1. **Endpoint 1**: `wp-json/assignment/v1/media/{id}`
+   - Method: GET
+   - Retrieves details of a given image ID.
+   - Response format: JSON
+   - Example response:
+     ```json
+     {
+       "ID": 123,
+       "Date": "2023-05-17 10:30:00",
+       "Slug": "image-slug",
+       "Type": "JPEG",
+       "Link": "https://example.com/wp-content/uploads/2023/05/image.jpg",
+       "Alt text": "Alternative text for the image",
+       "Attached Objects": {
+         "Posts": [1, 2, 3],
+         "Terms": [4, 5]
+       }
+     }
+     ```
 
-Ali Imran
+2. **Endpoint 2**: `wp-json/assignment/v1/media/{id}/delete`
+   - Method: GET
+   - Deletes a given image if it is not attached to any posts or terms.
+   - If the image is attached to any posts or terms, the response will indicate that deletion has failed.
 
-aalim.ali.imran@gmail.com
+## Contribution
 
+Contributions to the Safe Media Delete plugin are welcome! If you encounter any issues or have suggestions for improvements, please open an issue on the [GitHub repository](https://github.com/your-repository).
+
+## License
+
+This plugin is licensed under the [MIT License](LICENSE).
