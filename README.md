@@ -102,7 +102,7 @@ The plugin provides the following REST API endpoints under the `/assignment/v1/`
    - Deletes a given image if it is not attached to any posts or terms.
    - If the image is attached to any posts or terms, the response will indicate that deletion has failed.
 
-**Disclaimer:** I discovered that there are some security limitations within WordPress that restrict the usage of the DELETE method for API endpoints. Consequently, in order to comply with these restrictions, I have implemented the functionality using the GET method instead.
+**Note:** I discovered that there are some security limitations within WordPress that restrict the usage of the DELETE method for API endpoints. Consequently, in order to comply with these restrictions, I have implemented the functionality using the GET method instead.
 
 I apologize for any confusion or inconvenience caused by this deviation from the standard RESTful API convention. Rest assured, despite using the GET method, the functionality and purpose of the API endpoint remain intact, and it adheres to the required specifications outlined in the job description.
 
